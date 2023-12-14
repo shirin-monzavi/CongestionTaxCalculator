@@ -8,12 +8,13 @@ namespace CongestionTaxCalculatorTest
     {
         [Theory]
         [MemberData(nameof(Data))]
-        public void CongestionTaxCalculator_When_Vehicle_Is_Exempt_Or_IsHoliday_Should_Return_Zero_Total_Fee(
+        public void CongestionTaxCalculator_When_Vehicle_Is_Exempt_Or_Is_Holiday_Should_Return_Zero_Total_Fee(
             object vehicle,
             List<DateTime> periods)
         {
             //Arrenge
             var sut = new CongestionTaxCalculator();
+
             //Act
             var actual = sut.CalculatCongestionTax(vehicle as IVehicle, periods);
 
@@ -45,6 +46,11 @@ namespace CongestionTaxCalculatorTest
                   new object[] {
                      new Car(),new List<DateTime> {
                          new DateTime(2013,01,05)
+                     }
+                 },
+                  new object[] {
+                     new Car(),new List<DateTime> {
+                         new DateTime(2013,07,08)
                      }
                  }
             };

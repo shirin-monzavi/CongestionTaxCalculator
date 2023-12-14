@@ -10,19 +10,14 @@ namespace Domain
         {
             bool isExemptVehicle = this.isExemptVehicle(vehicle.GetName().ToLower());
 
-            if (isExemptVehicle)
-            {
-                return 0;
-            }
+            if (isExemptVehicle) return 0;
 
-            foreach (DateTime item in periods)
+            foreach (DateTime period in periods)
             {
-                bool isWeekEnds = this.isWeekEnds(item);
+                bool isWeekends = checkWeekends(period);
+                bool isJulyMonth = checkJulyMonth(period);
 
-                if (isWeekEnds)
-                {
-                    return 0;
-                }
+                if (isWeekends || isJulyMonth) return 0;
             }
 
             return 1;
@@ -41,10 +36,18 @@ namespace Domain
             return false;
         }
 
-        private bool isWeekEnds(DateTime date)
+        private bool checkWeekends(DateTime date)
         {
-            if (date.DayOfWeek == DayOfWeek.Saturday || 
-                date.DayOfWeek == DayOfWeek.Sunday) 
+            if (date.DayOfWeek == DayOfWeek.Saturday ||
+                date.DayOfWeek == DayOfWeek.Sunday)
+                return true;
+
+            return false;
+        }
+
+        private bool checkJulyMonth(DateTime date)
+        {
+            if (date.Month == (int)Months.July)
                 return true;
 
             return false;
