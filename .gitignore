@@ -4,3 +4,6 @@
 
 /Domain/obj
 /.vs
+/Application/obj
+/CongestionTaxCalculatorTest/obj
+/Infrastructure/obj
