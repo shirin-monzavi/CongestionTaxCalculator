@@ -2,20 +2,21 @@
 using Domain.Contract.Enum;
 using Domain.Contract.Vehicle;
 using Domain.Entity;
-using System;
 
 namespace Domain
 {
     public class CongestionTaxCalculator : ICongestionTaxCalculator
     {
         #region Feilds
-        private List<FeeTaxRule> _feeTaxRules;
+        private readonly List<FeeTaxRule> _feeTaxRules;
+        private readonly MaxfeeTax _maxfeeTax;
         #endregion
 
         #region Constructor
-        public CongestionTaxCalculator(List<FeeTaxRule> feeTaxRules)
+        public CongestionTaxCalculator(List<FeeTaxRule> feeTaxRules, MaxfeeTax maxfeeTax)
         {
             _feeTaxRules = feeTaxRules;
+            _maxfeeTax = maxfeeTax;
         }
         #endregion
 
@@ -37,6 +38,12 @@ namespace Domain
                 if (isWeekends || isJulyMonth) return totalFee;
 
                 totalFee = totalFee + calculateTaxBasedOnPeriods(period);
+
+                if (totalFee > _maxfeeTax.MaxAmount)
+                {
+                    totalFee = _maxfeeTax.MaxAmount;
+                    break;
+                }
             }
 
             return totalFee;

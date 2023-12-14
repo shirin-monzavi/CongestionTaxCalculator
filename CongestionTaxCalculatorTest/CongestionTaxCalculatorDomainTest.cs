@@ -80,7 +80,14 @@ namespace CongestionTaxCalculatorTest
                     FromDateTime= new DateTime(2013, 08, 08, 18, 30, 0, 0),
                     ToDateTime= new DateTime(2013, 08, 08, 05, 59, 0, 0),
                 },
-            });
+            },
+            new MaxfeeTax()
+            {
+                Id = 1,
+                MaxAmount = 60,
+                IsActive = true
+            }
+            );
         }
 
         [Theory]
@@ -97,6 +104,27 @@ namespace CongestionTaxCalculatorTest
 
             //Assert
             Assert.Equal(expectedResult, actual);
+        }
+
+        [Fact]
+        public void CongestionTaxCalculator_Should_Return_60_When_Total_Fee_Is_More_Than_60()
+        {
+            //Arrenge
+            var vehicle = new Car();
+            var periods = new List<DateTime>()
+            {
+                new DateTime(2013, 08, 08, 15, 45, 0, 0),
+                new DateTime(2013, 08, 08, 16, 10, 0, 0),
+                new DateTime(2013, 08, 08, 8, 10, 0, 0),
+                new DateTime(2013, 08, 08, 7, 10, 0, 0),
+                new DateTime(2013, 08, 08, 6, 10, 0, 0)
+            };
+
+            //Act
+            var actual = sut.CalculatCongestionTax(vehicle, periods);
+
+            //Assert
+            Assert.Equal(60, actual);
         }
 
         public static IEnumerable<object[]> Data =>
