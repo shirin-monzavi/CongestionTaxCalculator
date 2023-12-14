@@ -1,28 +1,50 @@
 ﻿using Domain.Contract;
 using Domain.Contract.Enum;
 using Domain.Contract.Vehicle;
+using Domain.Entity;
+using System;
 
 namespace Domain
 {
     public class CongestionTaxCalculator : ICongestionTaxCalculator
     {
+        #region Feilds
+        private List<FeeTaxRule> _feeTaxRules;
+        #endregion
+
+        #region Constructor
+        public CongestionTaxCalculator(List<FeeTaxRule> feeTaxRules)
+        {
+            _feeTaxRules = feeTaxRules;
+        }
+        #endregion
+
+
+        #region Public Methods
         public int CalculatCongestionTax(IVehicle vehicle, List<DateTime> periods)
         {
+            int totalFee = 0;
+
             bool isExemptVehicle = this.isExemptVehicle(vehicle.GetName().ToLower());
 
-            if (isExemptVehicle) return 0;
+            if (isExemptVehicle) return totalFee;
 
             foreach (DateTime period in periods)
             {
                 bool isWeekends = checkWeekends(period);
                 bool isJulyMonth = checkJulyMonth(period);
 
-                if (isWeekends || isJulyMonth) return 0;
+                if (isWeekends || isJulyMonth) return totalFee;
+
+                totalFee = totalFee + calculateTaxBasedOnPeriods(period);
             }
 
-            return 1;
+            return totalFee;
         }
+        #endregion
 
+
+        #region Private Methods
         private bool isExemptVehicle(string name)
         {
             foreach (var exemptVehicle in Enum.GetValues(typeof(ExemptVehicles)))
@@ -52,5 +74,23 @@ namespace Domain
 
             return false;
         }
+
+        private int calculateTaxBasedOnPeriods(DateTime dateTime)
+        {
+            var getPeriods = _feeTaxRules
+                 .Where(f =>
+                               DateTime.Compare(f.FromDateTime, dateTime) <= 0 &&
+                               DateTime.Compare(f.ToDateTime, dateTime) >= 0
+                        );
+
+            if (getPeriods.Any())
+            {
+                return getPeriods.First().Amount;
+            }
+
+            return 0;
+        }
+        #endregion
+
     }
 }
