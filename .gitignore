@@ -7,3 +7,9 @@
 /Application/obj
 /CongestionTaxCalculatorTest/obj
 /Infrastructure/obj
+/CongestionTaxCalculatorTest/bin/Debug/net6.0
+/Application/bin/Debug/net6.0
+/Domain/bin/Debug/net6.0
+/Domain.Contract/bin/Debug/net6.0
+/Domain.Contract/obj
+/Infrastructure/bin/Debug/net6.0

@@ -9,15 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Infrastructure", "2.Infrastructure", "{7E3F36C8-6F65-4317-883F-00BF091EE8F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{B2BB5FDB-042E-4176-8914-85838585C04C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{B2BB5FDB-042E-4176-8914-85838585C04C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Application", "3.Application", "{74B1FE06-BD53-4378-851D-3553AD3C7E8B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5F742965-1488-48BA-9ECD-3CD5C4DBC8C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CongestionTaxCalculatorTest", "CongestionTaxCalculatorTest\CongestionTaxCalculatorTest.csproj", "{CFE91ED6-BD00-4D1C-A688-46801827E136}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CongestionTaxCalculatorTest", "CongestionTaxCalculatorTest\CongestionTaxCalculatorTest.csproj", "{CFE91ED6-BD00-4D1C-A688-46801827E136}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{5FD123F6-9B8F-4F67-98B9-76F3E339F759}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{5FD123F6-9B8F-4F67-98B9-76F3E339F759}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Contract", "Domain.Contract\Domain.Contract.csproj", "{E452727A-A652-4C24-BC22-B9D4F7BD5BF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{5FD123F6-9B8F-4F67-98B9-76F3E339F759}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FD123F6-9B8F-4F67-98B9-76F3E339F759}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FD123F6-9B8F-4F67-98B9-76F3E339F759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E452727A-A652-4C24-BC22-B9D4F7BD5BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E452727A-A652-4C24-BC22-B9D4F7BD5BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E452727A-A652-4C24-BC22-B9D4F7BD5BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E452727A-A652-4C24-BC22-B9D4F7BD5BF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{B2BB5FDB-042E-4176-8914-85838585C04C} = {7E3F36C8-6F65-4317-883F-00BF091EE8F6}
 		{CFE91ED6-BD00-4D1C-A688-46801827E136} = {5F742965-1488-48BA-9ECD-3CD5C4DBC8C5}
 		{5FD123F6-9B8F-4F67-98B9-76F3E339F759} = {74B1FE06-BD53-4378-851D-3553AD3C7E8B}
+		{E452727A-A652-4C24-BC22-B9D4F7BD5BF9} = {5BB6DA7B-E652-4B8A-9588-88787065D4E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9E422E3-409D-4866-88F4-E99C8204D448}
