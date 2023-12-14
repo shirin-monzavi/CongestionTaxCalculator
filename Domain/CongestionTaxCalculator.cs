@@ -8,18 +8,27 @@ namespace Domain
     {
         public int CalculatCongestionTax(IVehicle vehicle, List<DateTime> periods)
         {
-            bool isExemptVehicle = IsExemptVehicle(vehicle.GetName().ToLower());
+            bool isExemptVehicle = this.isExemptVehicle(vehicle.GetName().ToLower());
 
             if (isExemptVehicle)
             {
                 return 0;
             }
 
-            return 1;
+            foreach (DateTime item in periods)
+            {
+                bool isWeekEnds = this.isWeekEnds(item);
 
+                if (isWeekEnds)
+                {
+                    return 0;
+                }
+            }
+
+            return 1;
         }
 
-        private bool IsExemptVehicle(string name)
+        private bool isExemptVehicle(string name)
         {
             foreach (var exemptVehicle in Enum.GetValues(typeof(ExemptVehicles)))
             {
@@ -28,6 +37,15 @@ namespace Domain
                     return true;
                 }
             }
+
+            return false;
+        }
+
+        private bool isWeekEnds(DateTime date)
+        {
+            if (date.DayOfWeek == DayOfWeek.Saturday || 
+                date.DayOfWeek == DayOfWeek.Sunday) 
+                return true;
 
             return false;
         }

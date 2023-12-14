@@ -8,7 +8,7 @@ namespace CongestionTaxCalculatorTest
     {
         [Theory]
         [MemberData(nameof(Data))]
-        public void CongestionTaxCalculator_When_Vehicle_Is_Exempt_Should_Return_Zero_Total_Fee(
+        public void CongestionTaxCalculator_When_Vehicle_Is_Exempt_Or_IsHoliday_Should_Return_Zero_Total_Fee(
             object vehicle,
             List<DateTime> periods)
         {
@@ -20,6 +20,8 @@ namespace CongestionTaxCalculatorTest
             //Assert
             Assert.Equal(0, actual);
         }
+
+       
 
 
         public static IEnumerable<object[]> Data =>
@@ -33,6 +35,16 @@ namespace CongestionTaxCalculatorTest
                   new object[] {
                      new Tractor(),new List<DateTime> {
                          new DateTime(2013,02,02)
+                     }
+                 },
+                  new object[] {
+                     new Car(),new List<DateTime> {
+                         new DateTime(2013,01,06)
+                     }
+                 },
+                  new object[] {
+                     new Car(),new List<DateTime> {
+                         new DateTime(2013,01,05)
                      }
                  }
             };
