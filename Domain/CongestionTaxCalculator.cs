@@ -37,23 +37,7 @@ namespace Domain
                 foreach (var refItem in periods.Where(p => periods.IndexOf(p) > periods.IndexOf(item)))
                 {
                     var interval = subtractDateTime(item, refItem);
-
-                    if (interval.Hours <= 1 && !samePeriods.Contains(refItem))
-                    {
-                        samePeriods.Add(refItem);
-                        samePeriods.Add(item);
-
-                        var itemFee = calculateTaxBasedOnPeriods(item);
-                        var refIemFee = calculateTaxBasedOnPeriods(refItem);
-
-                        if (tempFee < itemFee || tempFee < refIemFee)
-                        {
-                            if (itemFee < refIemFee)
-                                tempFee = refIemFee;
-                            else
-                                tempFee = itemFee;
-                        }
-                    }
+                    tempFee = calculateCongestionTaxInOneHour(tempFee, samePeriods, item, refItem, interval);
                 }
 
                 totalFee = totalFee + tempFee;
@@ -72,6 +56,28 @@ namespace Domain
             }
 
             return totalFee;
+        }
+
+        private int calculateCongestionTaxInOneHour(int tempFee, List<DateTime> samePeriods, DateTime item, DateTime refItem, TimeSpan interval)
+        {
+            if (interval.Hours <= 1 && !samePeriods.Contains(refItem))
+            {
+                samePeriods.Add(refItem);
+                samePeriods.Add(item);
+
+                var itemFee = calculateTaxBasedOnPeriods(item);
+                var refIemFee = calculateTaxBasedOnPeriods(refItem);
+
+                if (tempFee < itemFee || tempFee < refIemFee)
+                {
+                    if (itemFee < refIemFee)
+                        tempFee = refIemFee;
+                    else
+                        tempFee = itemFee;
+                }
+            }
+
+            return tempFee;
         }
 
         private TimeSpan subtractDateTime(DateTime firstDate, DateTime secondDate)
