@@ -170,6 +170,16 @@ namespace CongestionTaxCalculatorTest
                         new DateTime(2013, 08, 08, 7, 0, 0, 0),
                     },18
                  }
+                  ,
+                  new object[] {
+                    new Car(),new List<DateTime>()
+                    {
+                        new DateTime(2013, 08, 08, 6, 0, 0, 0),
+                        new DateTime(2013, 08, 08, 6, 30, 0, 0),
+                        new DateTime(2013, 08, 08, 18, 0, 0, 0),
+                        new DateTime(2013, 08, 08, 7, 0, 0, 0),
+                    },26
+                 }
             };
     }
 }

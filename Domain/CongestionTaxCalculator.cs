@@ -28,37 +28,50 @@ namespace Domain
 
             if (isExemptVehicle(vehicle.GetName().ToLower())) return totalFee;
 
-            var firstTime = periods[0];
+            var samePeriods = new List<DateTime>();
 
-            foreach (DateTime period in periods)
+            foreach (var item in periods)
             {
-                if (checkWeekends(period) || checkJulyMonth(period)) return totalFee;
+                if (checkWeekends(item) || checkJulyMonth(item)) return totalFee;
 
-                var interval = subtractDateTime(firstTime, period);
-
-                if (interval.Hours <= 1)
+                foreach (var refItem in periods.Where(p => periods.IndexOf(p) > periods.IndexOf(item)))
                 {
-                    var preiodFee = calculateTaxBasedOnPeriods(period);
-                    if (tempFee < preiodFee)
-                        tempFee = preiodFee;
+                    var interval = subtractDateTime(item, refItem);
 
-                    continue;
+                    if (interval.Hours <= 1 && !samePeriods.Contains(refItem))
+                    {
+                        samePeriods.Add(refItem);
+                        samePeriods.Add(item);
+
+                        var itemFee = calculateTaxBasedOnPeriods(item);
+                        var refIemFee = calculateTaxBasedOnPeriods(refItem);
+
+                        if (tempFee < itemFee || tempFee < refIemFee)
+                        {
+                            if (itemFee < refIemFee)
+                                tempFee = refIemFee;
+                            else
+                                tempFee = itemFee;
+                        }
+                    }
                 }
 
-                totalFee = totalFee + calculateTaxBasedOnPeriods(period);
+                totalFee = totalFee + tempFee;
+                tempFee = 0;
+
+                if (!samePeriods.Contains(item))
+                {
+                    totalFee = totalFee + calculateTaxBasedOnPeriods(item);
+                }
 
                 if (totalFee > _maxfeeTax.MaxAmount)
                 {
                     totalFee = _maxfeeTax.MaxAmount;
                     break;
                 }
-
-                totalFee = totalFee + tempFee;
-
-                tempFee = 0;
             }
 
-            return totalFee + tempFee;
+            return totalFee;
         }
 
         private TimeSpan subtractDateTime(DateTime firstDate, DateTime secondDate)
