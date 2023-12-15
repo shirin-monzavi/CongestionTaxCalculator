@@ -1,4 +1,4 @@
-﻿namespace Domain.Entity
+﻿namespace Domain.Contract.Entity
 {
     public class MaxfeeTax
     {

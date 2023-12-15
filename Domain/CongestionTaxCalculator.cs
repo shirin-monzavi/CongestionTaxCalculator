@@ -1,7 +1,7 @@
 ﻿using Domain.Contract;
+using Domain.Contract.Entity;
 using Domain.Contract.Enum;
 using Domain.Contract.Vehicle;
-using Domain.Entity;
 
 namespace Domain
 {

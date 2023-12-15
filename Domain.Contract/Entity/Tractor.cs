@@ -1,6 +1,6 @@
 ﻿using Domain.Contract.Vehicle;
 
-namespace Domain.Entity
+namespace Domain.Contract.Entity
 {
     public class Tractor : IVehicle
     {

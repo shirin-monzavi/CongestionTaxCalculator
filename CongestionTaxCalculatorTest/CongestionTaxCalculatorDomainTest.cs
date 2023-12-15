@@ -1,6 +1,6 @@
 using Domain;
+using Domain.Contract.Entity;
 using Domain.Contract.Vehicle;
-using Domain.Entity;
 
 namespace CongestionTaxCalculatorTest
 {

@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Contract", "Domain.Contract\Domain.Contract.csproj", "{E452727A-A652-4C24-BC22-B9D4F7BD5BF9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Endpoint", "4.Endpoint", "{0A2844E2-CC75-4E43-83E6-ACC7F1EE7444}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CongestionTaxCalculatorWebApi", "CongestionTaxCalculatorWebApi\CongestionTaxCalculatorWebApi.csproj", "{8E8F7D20-8FD3-47B2-805D-320194AC02D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,10 @@ Global
 		{E452727A-A652-4C24-BC22-B9D4F7BD5BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E452727A-A652-4C24-BC22-B9D4F7BD5BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E452727A-A652-4C24-BC22-B9D4F7BD5BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E8F7D20-8FD3-47B2-805D-320194AC02D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E8F7D20-8FD3-47B2-805D-320194AC02D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E8F7D20-8FD3-47B2-805D-320194AC02D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E8F7D20-8FD3-47B2-805D-320194AC02D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +65,7 @@ Global
 		{CFE91ED6-BD00-4D1C-A688-46801827E136} = {5F742965-1488-48BA-9ECD-3CD5C4DBC8C5}
 		{5FD123F6-9B8F-4F67-98B9-76F3E339F759} = {74B1FE06-BD53-4378-851D-3553AD3C7E8B}
 		{E452727A-A652-4C24-BC22-B9D4F7BD5BF9} = {5BB6DA7B-E652-4B8A-9588-88787065D4E7}
+		{8E8F7D20-8FD3-47B2-805D-320194AC02D9} = {0A2844E2-CC75-4E43-83E6-ACC7F1EE7444}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9E422E3-409D-4866-88F4-E99C8204D448}
