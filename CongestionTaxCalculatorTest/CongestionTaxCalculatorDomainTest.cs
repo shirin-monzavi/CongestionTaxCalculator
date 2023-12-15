@@ -106,27 +106,6 @@ namespace CongestionTaxCalculatorTest
             Assert.Equal(expectedResult, actual);
         }
 
-        [Fact]
-        public void CongestionTaxCalculator_Should_Return_60_When_Total_Fee_Is_More_Than_60()
-        {
-            //Arrenge
-            var vehicle = new Car();
-            var periods = new List<DateTime>()
-            {
-                new DateTime(2013, 08, 08, 15, 45, 0, 0),
-                new DateTime(2013, 08, 08, 16, 10, 0, 0),
-                new DateTime(2013, 08, 08, 8, 10, 0, 0),
-                new DateTime(2013, 08, 08, 7, 10, 0, 0),
-                new DateTime(2013, 08, 08, 6, 10, 0, 0)
-            };
-
-            //Act
-            var actual = sut.CalculatCongestionTax(vehicle, periods);
-
-            //Assert
-            Assert.Equal(60, actual);
-        }
-
         public static IEnumerable<object[]> Data =>
             new List<object[]>(){
 
@@ -170,6 +149,16 @@ namespace CongestionTaxCalculatorTest
                      new Car(),new List<DateTime> {
                          new DateTime(2013, 08, 08, 15, 45, 0, 0)
                      },18
+                 },
+                  new object[] {
+                    new Car(),new List<DateTime>()
+                    {
+                        new DateTime(2013, 08, 08, 15, 45, 0, 0),
+                        new DateTime(2013, 08, 08, 16, 10, 0, 0),
+                        new DateTime(2013, 08, 08, 8, 10, 0, 0),
+                        new DateTime(2013, 08, 08, 7, 10, 0, 0),
+                        new DateTime(2013, 08, 08, 6, 10, 0, 0)
+                    },60
                  }
             };
     }
