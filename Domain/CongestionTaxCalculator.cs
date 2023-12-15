@@ -24,18 +24,26 @@ namespace Domain
         #region Public Methods
         public int CalculatCongestionTax(IVehicle vehicle, List<DateTime> periods)
         {
-            int totalFee = 0;
+            int tempFee = 0, totalFee = 0;
 
-            bool isExemptVehicle = this.isExemptVehicle(vehicle.GetName().ToLower());
+            if (isExemptVehicle(vehicle.GetName().ToLower())) return totalFee;
 
-            if (isExemptVehicle) return totalFee;
+            var firstTime = periods[0];
 
             foreach (DateTime period in periods)
             {
-                bool isWeekends = checkWeekends(period);
-                bool isJulyMonth = checkJulyMonth(period);
+                if (checkWeekends(period) || checkJulyMonth(period)) return totalFee;
 
-                if (isWeekends || isJulyMonth) return totalFee;
+                var interval = subtractDateTime(firstTime, period);
+
+                if (interval.Hours <= 1)
+                {
+                    var preiodFee = calculateTaxBasedOnPeriods(period);
+                    if (tempFee < preiodFee)
+                        tempFee = preiodFee;
+
+                    continue;
+                }
 
                 totalFee = totalFee + calculateTaxBasedOnPeriods(period);
 
@@ -44,9 +52,23 @@ namespace Domain
                     totalFee = _maxfeeTax.MaxAmount;
                     break;
                 }
+
+                totalFee = totalFee + tempFee;
+
+                tempFee = 0;
             }
 
-            return totalFee;
+            return totalFee + tempFee;
+        }
+
+        private TimeSpan subtractDateTime(DateTime firstDate, DateTime secondDate)
+        {
+            if (DateTime.Compare(firstDate, secondDate) <= 0)
+            {
+                return secondDate - firstDate;
+            }
+
+            return firstDate - secondDate;
         }
         #endregion
 

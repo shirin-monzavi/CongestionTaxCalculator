@@ -106,6 +106,7 @@ namespace CongestionTaxCalculatorTest
             Assert.Equal(expectedResult, actual);
         }
 
+
         public static IEnumerable<object[]> Data =>
             new List<object[]>(){
 
@@ -155,10 +156,19 @@ namespace CongestionTaxCalculatorTest
                     {
                         new DateTime(2013, 08, 08, 15, 45, 0, 0),
                         new DateTime(2013, 08, 08, 16, 10, 0, 0),
+                        new DateTime(2013, 08, 08, 18, 10, 0, 0),
                         new DateTime(2013, 08, 08, 8, 10, 0, 0),
                         new DateTime(2013, 08, 08, 7, 10, 0, 0),
                         new DateTime(2013, 08, 08, 6, 10, 0, 0)
                     },60
+                 },
+                  new object[] {
+                    new Car(),new List<DateTime>()
+                    {
+                        new DateTime(2013, 08, 08, 6, 0, 0, 0),
+                        new DateTime(2013, 08, 08, 6, 30, 0, 0),
+                        new DateTime(2013, 08, 08, 7, 0, 0, 0),
+                    },18
                  }
             };
     }
